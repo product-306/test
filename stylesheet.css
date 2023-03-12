@@ -1,0 +1,320 @@
+@charset "utf-8";
+* {
+   box-sizing: border-box;
+}
+body {
+   margin: 0;
+   padding: 0;
+   font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", "Helvetica Neue", Helvetica, Arial, sans-serif;
+   background-color: #e6e6e6;
+   letter-spacing : 0.2em;
+}
+header {
+   padding: 20px 4% 10px;
+   top: 0;
+   width: 100%;
+   background-color: transparent;
+   display: flex;
+   align-items: center;
+   position: fixed;
+}
+h1 {
+   margin: 0; padding: 0;
+   font-size: 20px;
+}
+a {	
+   text-decoration: none;
+   color: #fff;
+}
+nav {
+   margin: 0 0 0 auto;
+  font-family: 'Poiret One', cursive;
+}
+ul {
+   list-style: none;
+   margin: 0;
+   display: flex;
+}
+li {
+   margin: 0 0 0 15px;
+   font-size: 14px;
+}
+.main-visual {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: url('https://images.unsplash.com/photo-1547555999-14e818e09e33?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80.jpg') top center / cover no-repeat;
+}
+h2 {
+   margin: 0;
+   font-size: 30px;
+   font-weight: normal;
+   color: #0C0C0C;
+  font-family:'Shippori Mincho', serif;
+    text-align: center;
+}
+.logo{
+   width:100%;
+   margin-right:auto;
+ }
+.logo img{
+  width:80%;
+  max-width:100%;
+  margin-left:auto;
+ }
+.sp-nav {
+   display: none;
+}
+
+/*==================================================
+共通　横並びのための設定
+===================================*/
+.pc-nav li a{
+    display:flex;
+  　text-decoration: none;
+    font-size:20px;
+    color: #fff;
+    padding:5px;
+}
+
+/*==================================================
+　5-3-1 中心から外に線が伸びる（下部）
+===================================*/
+
+.pc-nav li a{
+    /*線の基点とするためrelativeを指定*/
+  position: relative;
+}
+
+.pc-nav li.current a,
+.pc-nav li a:hover{
+  color:#0481A2;
+}
+
+.pc-nav li a::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    /*線の形状*/
+    width: 80%;
+    height: 2px;
+    background:#0481A2;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0, 1);/*X方向0、Y方向1*/
+    transform-origin: center top;/*上部中央基点*/
+}
+
+/*現在地とhoverの設定*/
+.pc-nav li.current a::after,
+.pc-nav li a:hover::after {
+    transform: scale(1, 1);/*X方向にスケール拡大*/
+}
+
+
+@media screen and (max-width: 640px) {
+   .pc-nav {
+      display: none;
+   }
+   .sp-nav {
+      z-index: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: block;
+      width: 100%;
+      background: rgba(0, 0, 0, .8);
+      opacity: 0;
+      transform: translateY(-100%);
+      transition: all .2s ease-in-out;
+   }
+   #hamburger {
+      position: relative;
+      display: block;
+      width: 15%;
+      height: 25px;
+      margin: 0 0 0 auto;
+   }
+   #hamburger span {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+      transform: translateY(-50%);
+   }
+   #hamburger::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+   }
+   #hamburger::after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 70%;
+      height: 2px;
+      background-color: #fff;
+   }
+   /*スマホメニュー*/
+   .sp-nav ul {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+   }
+   .sp-nav li {
+      margin: 0;
+      padding: 0;
+   }
+   .sp-nav li span {
+      font-size: 15px;
+      color: #fff;
+   }
+   .sp-nav li a, .sp-nav li span {
+      display: block;
+      padding: 20px 0;
+   }
+   /*-閉じるアイコンー*/
+   .sp-nav .close {
+      position: relative;
+      padding-left: 20px;
+   }
+   .sp-nav .close::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: #fff;
+      transform: rotate( 45deg );
+   }
+   .sp-nav .close::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: #fff;
+      transform: rotate( -45deg );
+   }
+   .toggle {
+      transform: translateY( 0 );
+      opacity: 1;
+   }
+}
+
+
+
+/*ここからfooter*/
+footer {
+  background-color: #414141;
+  width: 100%;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  background: #222;
+  bottom: -7%;
+  position:fixed;
+}
+
+.footer01 .icons {
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #111;
+}
+
+.footer01 .icons a {
+  display: inline-block;
+  padding: 10px 20px;
+}
+
+.footer01 .icons img {
+  width: 40px;
+}
+
+.footer01 .nav {
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #111;
+}
+
+.footer01 .nav a {
+  display: inline-block;
+  display: flex;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 0 10px;
+  color: #ccc;
+}
+
+.footer01 .copyright {
+color: #ffffff;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  text-align: center;
+}
+
+
+@media only screen and (min-width: 641px) {
+ .footer01 .nav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .footer01 .nav a:hover {
+    color: #ca353b;
+  }
+}
+
+
+@media only screen and (max-width: 640px) {
+  .footer01 {
+    text-align: center;
+  }
+
+  .footer01 .nav li {
+    border-top: 1px solid #555555;
+  }
+
+  .footer01 .nav li:last-child {
+    border-bottom: 1px solid #555555;
+  }
+  
+  .footer01 .nav li a {
+    padding: 15px 20px;
+    text-align: left;
+  }
+}
